@@ -1,0 +1,39 @@
+<div class="sortable">
+</div>
+
+<div class="info">
+  <img src="/uploads/project.jpg" width="350" height="165"
+  alt="My Amazing Project" class="project-image shadowed" />
+
+  <div class="project-details">
+    <h3 class="project-name">
+      <%= project.attributes.title %>
+    </h3>
+
+    <input class="edit-title hidden-edit" placeholder="Enter a title">
+
+    <a href="<%= project.attributes.url %>">
+      <%= project.attributes.url %>
+    </a>
+
+    <div class="skills">
+      <span class="skill-label">
+        Skills:
+      </span>
+
+      <ul class="skill-list">
+        <!-- Skills to be populated here -->
+      </ul>
+
+      <span class="add-skill">Add Skill</span>
+    </div>
+
+    <div class="body">
+      <%= project.attributes.body %>
+    </div>
+  </div>
+</div>
+
+<div class="remove-project">
+  Remove Project
+</div>
