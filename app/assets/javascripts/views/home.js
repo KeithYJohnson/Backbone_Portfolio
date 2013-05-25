@@ -13,10 +13,8 @@ app.views.Home = Backbone.View.extend({
     var users = new app.collections.UserList();
     var _this = this;
     users.fetch({
-      success: function(users) {
+      success: function(users, response, options) {
         users.forEach(function(user) {
-          var test = user
-          console.log(test)
           // use .navigate
         _this.$el.find("#users").append("<li><a href='#' class='user-link' data-id='" + user.id + "'>" + user.full_name() + user.mission() + user.bio() +  "</a></li>");
         });
@@ -32,7 +30,7 @@ app.views.Home = Backbone.View.extend({
     var id = $(event.target).data("id");
 
     console.log(id);
-
+    
     new app.Router().navigate('/users/' + id, {trigger: true});
     // must render somethings
     // render it in a way to attached the correct 

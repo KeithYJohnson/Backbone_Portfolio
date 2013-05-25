@@ -1,6 +1,13 @@
 app.models.Project = Backbone.Model.extend({
 
-
+  // Add a URL Structure, configure in routes.rb
+  url: function() {
+    var url = '/users/' + this.user.id + '/projects';
+    if(!this.isNew()) {
+      url += '/' + this.id;
+    }
+    return url;
+  },
 
   initialize: function() {
     this.skills = new app.collections.SkillList();

@@ -33,9 +33,24 @@ app.views._Project = Backbone.View.extend({
   updateTitle: function() {
     var new_title = this.$el.find('.edit-title').val().trim();
     this.model.set('title', new_title);
-    this.model.save();
+    // Dan's bit: "Have we created it or not?"
+    if(this.model.isNew()) {
+      // Remember that collection is a list of current projects.
+      // This is doing an AJAX call to post to projects, so just like submitting a form in rails view
+      // this.model -> "Here's a model, go and create it"
+      // create passes in the model, and syncronizes it with the server to make an AJAX request
+      // up until this point is was all on the client side, now it shifts to the server.
+      this.collection.create(this.model);
+    } else {
+      // A PUT request, like an update action.  
+      this.model.save();
+    }
     this.$el.find('.edit-title').val('').hide().prev('h3').show().html(new_title);
   },
+
+  destroyProject: function () { 
+    this.model.destroy();
+  }
 
   // addSkill: function() {
   //   var skill = new app.views._Skill({
